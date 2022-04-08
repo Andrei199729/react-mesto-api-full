@@ -1,5 +1,5 @@
 // export const BASE_URL = process.env.REACT_APP_BASE_URL || 'https://auth.nomoreparties.co';
-export const BASE_URL = process.env.REACT_APP_BASE_URL;
+export const BASE_URL = 'https://api.arahalevich.nomoredomains.work';
 
 const HEADERS = {
     'Accept': 'application/json',
