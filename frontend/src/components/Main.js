@@ -3,7 +3,8 @@ import Card from "./Card";
 import { CurrentUserContext } from "../context/CurrentUserContext";
 
 function Main(props) {
-    const currentUser = useContext(CurrentUserContext);
+  const currentUser = useContext(CurrentUserContext);
+  console.log(currentUser);
     return (
         <>
             <main className="content">
@@ -15,8 +16,8 @@ function Main(props) {
                     </div>
                     <div className="profile__columns">
                         <div className="profile__info">
-                <h1 className="profile__title">{currentUser.user.name}</h1>
-                <p className="profile__subtitle">{currentUser.user.about}</p>
+                <h1 className="profile__title">{currentUser.name}</h1>
+                <p className="profile__subtitle">{currentUser.about}</p>
                         </div>
                         <button className="profile__edit-btn" type="button" onClick={props.onEditProfile}></button>
                     </div>
