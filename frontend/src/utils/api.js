@@ -73,7 +73,7 @@ class Api {
         })
             .then(this._getResponseData)
     }
-  setToken(token) {
+  getToken(token) {
     return localStorage.getItem('token');
   }
 }

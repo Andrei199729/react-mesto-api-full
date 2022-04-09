@@ -38,11 +38,8 @@ function App() {
   const [email, setEmail] = useState('');
 
   useEffect(() => {
-    // api.setToken();
-
+    api.getToken();
     const token = localStorage.getItem('token');
-    console.log('token', token);
-
     Promise.all([api.getAboutUser(), api.getInitialCards()])
       .then(([user, card]) => {
         setCurrentUser(user);
@@ -73,7 +70,11 @@ function App() {
   //   }
   // }, [loggedIn, history])
   useEffect(() => {
+    api.getToken();
     if (loggedIn) {
+      api.getInitialCards()
+        .then(cards => setCards(cards))
+        .catch(err => console.log(err))
       history.push('/');
     }
   }, [loggedIn, history])
