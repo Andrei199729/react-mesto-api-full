@@ -52,8 +52,6 @@ function App() {
           if (res) {
             setLoggedIn(true);
             setEmail(res.email);
-            console.log('email.ress', res);
-            // setEmail(res.data.email);
           } else {
             localStorage.removeItem('token');
           }
