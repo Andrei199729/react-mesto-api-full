@@ -37,9 +37,7 @@ function EditAvatarPopup(props) {
 
     function handleSubmit() {
         props.onUpdateAvatar({ avatar });
-        props.onClose();
-
-        console.log(formValid)
+      props.onClose();
     }
 
     function blurHandler(e) {

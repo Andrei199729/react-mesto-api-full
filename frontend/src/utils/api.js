@@ -10,9 +10,7 @@ class Api {
 
     getInitialCards() {
         return fetch(`${this.address}/cards`, {
-            headers: {
-                authorization: this.token
-            }
+          headers: this.headers,
         })
             .then(this._getResponseData);
     }
@@ -75,6 +73,9 @@ class Api {
         })
             .then(this._getResponseData)
     }
+  setToken(token) {
+    return localStorage.getItem('token');
+  }
 }
 
 const api = new Api({
@@ -82,7 +83,8 @@ const api = new Api({
   // token: 'f0863dcb-641a-48c7-ae1b-e19e122bd627'
   address: 'https://api.arahalevich.nomoredomains.work',
   headers: {
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${localStorage.getItem('token')}`
   }
 });
 

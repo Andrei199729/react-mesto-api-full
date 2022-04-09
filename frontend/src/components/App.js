@@ -38,6 +38,7 @@ function App() {
   const [email, setEmail] = useState('');
 
   useEffect(() => {
+    // api.setToken();
     const token = localStorage.getItem('token');
     Promise.all([api.getAboutUser(), api.getInitialCards()])
       .then(([user, card]) => {
@@ -50,7 +51,9 @@ function App() {
         .then((res) => {
           if (res) {
             setLoggedIn(true);
-            setEmail(res.data.email);
+            setEmail(res.email);
+            console.log('email.ress', res);
+            // setEmail(res.data.email);
           } else {
             localStorage.removeItem('token');
           }
@@ -59,6 +62,15 @@ function App() {
     }
   }, []);
 
+  // useEffect(() => {
+  //   api.setToken();
+  //   if (loggedIn) {
+  //     api.getInitialCards()
+  //       .then(cards => setCards(cards))
+  //       .catch(err => console.log(err))
+  //     history.push('/');
+  //   }
+  // }, [loggedIn, history])
   useEffect(() => {
     if (loggedIn) {
       history.push('/');
