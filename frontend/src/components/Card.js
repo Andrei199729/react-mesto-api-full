@@ -7,7 +7,13 @@ function Card(props) {
 
     // Определяем, являемся ли мы владельцем текущей карточки
     const isOwn = props.owner._id === currentUser._id;
-
+  console.log('currentUser', currentUser);
+  console.log('currentUser._id', currentUser._id);
+  console.log('currentUser', currentUser);
+  console.log('isOwn', isOwn);
+  console.log('props', props);
+  console.log('props.owner', props.owner);
+  console.log('props.owner._id', props.owner._id);
     // Создаём переменную, которую после зададим в `className` для кнопки удаления
     const cardDeleteButtonClassName = (
         `element__delete ${isOwn ? 'element__delete-button_visible' : 'element__delete-button_hidden'}`
@@ -22,7 +28,7 @@ function Card(props) {
     );
 
     function handleClick() {
-        props.onCardClick(props);
+      props.onCardClick(props);
     }
 
     function handleClickDeleteCard() {
