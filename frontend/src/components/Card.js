@@ -6,7 +6,7 @@ function Card(props) {
     const currentUser = useContext(CurrentUserContext);
 
     // Определяем, являемся ли мы владельцем текущей карточки
-  const isOwn = props.owner._id === currentUser._id;
+  const isOwn = props.owner === currentUser._id;
   console.log('isOwn', isOwn);
   console.log('props', props);
   console.log('props.owner', props.owner);

@@ -11,7 +11,7 @@ module.exports.getCard = (req, res, next) => {
 module.exports.createCard = (req, res, next) => {
   const { name, link } = req.body;
   const ownerId = req.user._id;
-  Cards.create({ name, link, owner: { _id: ownerId } })
+  Cards.create({ name, link, owner: ownerId })
     .then((card) => {
       if (!card) {
         next(new BadRequestError('Переданы некорректные данные'));
