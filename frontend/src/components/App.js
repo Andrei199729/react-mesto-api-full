@@ -39,7 +39,10 @@ function App() {
 
   useEffect(() => {
     // api.setToken();
+
     const token = localStorage.getItem('token');
+    console.log('token', token);
+
     Promise.all([api.getAboutUser(), api.getInitialCards()])
       .then(([user, card]) => {
         setCurrentUser(user);
@@ -76,14 +79,17 @@ function App() {
   }, [loggedIn, history])
 
   function handleCardLike(card) {
+    console.log('card', card);
 
     // Снова проверяем, есть ли уже лайк на этой карточке
     const isLiked = card.likes.some(i => i._id === currentUser._id);
-
+    console.log('isLiked', isLiked);
     // Отправляем запрос в API и получаем обновлённые данные карточки
     api.changeLikeCardStatus(card._id, isLiked)
       .then((newCard) => {
-        setCards((state) => state.map((c) => c._id === card._id ? newCard : c))
+        setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
+        console.log('newCard', newCard);
+
       })
       .catch(err => console.log(err))
   }
@@ -116,18 +122,24 @@ function App() {
   }
 
   function handleUpdateUser(user) {
+    console.log('user', user);
+
     api.editProfile(user)
       .then(user => setCurrentUser(user))
       .catch(err => console.log(err))
   }
 
   function handleUpdateAvatar(avatar) {
+    console.log('avatar', avatar);
+
     api.updateAvatar(avatar)
       .then(item => setCurrentUser(item))
       .catch(err => console.log(err))
   }
 
   function handleAddPlaceSubmit(newCard) {
+    console.log('newCard', newCard);
+
     api.addCard(newCard)
       .then(card => setCards([card, ...cards]))
       .catch(err => console.log(err))
