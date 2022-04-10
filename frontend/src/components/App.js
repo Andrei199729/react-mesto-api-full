@@ -145,6 +145,7 @@ function App() {
   }
 
   function handleAuthorization(formData) {
+    api.getToken();
     auth.authorization(formData.email, formData.password)
       .then((data) => {
         if (data.token) {
