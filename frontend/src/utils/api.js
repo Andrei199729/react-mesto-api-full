@@ -79,7 +79,6 @@ class Api {
   }
 }
 
-console.log('this.getToken', this.getToken);
 console.log('this.getToken()', this.getToken());
 
 const api = new Api({
