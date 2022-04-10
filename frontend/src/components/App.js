@@ -76,7 +76,7 @@ function App() {
         .then((cards) => setCards(cards))
         .catch(err => console.log(err))
       api.getAboutUser()
-        .then((user) => console.log(user))
+        .then((user) => setCurrentUser(user))
         .catch(err => console.log(err))
       history.push('/');
     }
