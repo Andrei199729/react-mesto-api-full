@@ -42,6 +42,10 @@ function App() {
     const token = localStorage.getItem('token');
     Promise.all([api.getAboutUser(), api.getInitialCards()])
       .then(([user, card]) => {
+        console.log(user);
+        console.dir(user);
+        console.log(card);
+        console.dir(card);
         setCurrentUser(user);
         setCards(card);
       })
@@ -145,15 +149,9 @@ function App() {
   }
 
   function handleAuthorization(formData) {
-    console.dir('formDatadir', formData);
-    console.log('formDatalog', formData);
     auth.authorization(formData.email, formData.password)
       .then((data) => {
-        console.dir('datadir', data);
-        console.log('datalog', data);
         if (data.token) {
-          console.dir('datadir.token', data.token);
-          console.log('datalog.token', data.token);
           localStorage.setItem('token', data.token);
           setLoggedIn(true);
           setEmail(formData.email);
