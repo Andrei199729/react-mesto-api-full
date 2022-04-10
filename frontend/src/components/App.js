@@ -62,15 +62,16 @@ function App() {
 
   useEffect(() => {
     api.getToken();
-    if (loggedIn) {
-      api.getInitialCards()
-        .then((cards) => setCards(cards))
-        .catch(err => console.log(err))
-      api.getAboutUser()
-        .then((user) => setCurrentUser(user))
-        .catch(err => console.log(err))
-      history.push('/');
+    if (!loggedIn) {
+      return;
     }
+    api.getInitialCards()
+      .then((cards) => setCards(cards))
+      .catch(err => console.log(err))
+    api.getAboutUser()
+      .then((user) => setCurrentUser(user))
+      .catch(err => console.log(err))
+    history.push('/');
   }, [loggedIn, history])
 
   function handleCardLike(card) {
