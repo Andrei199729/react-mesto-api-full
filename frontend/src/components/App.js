@@ -39,29 +39,12 @@ function App() {
 
   useEffect(() => {
     api.getToken();
-    const token = localStorage.getItem('token');
     Promise.all([api.getAboutUser(), api.getInitialCards()])
       .then(([user, card]) => {
-        console.log(user);
-        console.dir(user);
-        console.log(card);
-        console.dir(card);
         setCurrentUser(user);
         setCards(card);
       })
       .catch(err => console.log(err))
-    if (token) {
-      auth.examinationValidationToken(token)
-        .then((res) => {
-          if (res) {
-            setLoggedIn(true);
-            setEmail(res.email);
-          } else {
-            localStorage.removeItem('token');
-          }
-        })
-        .catch(err => console.log(err))
-    }
   }, []);
 
   useEffect(() => {
@@ -176,6 +159,22 @@ function App() {
     localStorage.removeItem('token');
     history.push('/signin');
   }
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      const token = localStorage.getItem("token");
+      auth.examinationValidationToken(token)
+        .then((res) => {
+          if (res) {
+            setLoggedIn(true);
+            setEmail(res.email);
+          } else {
+            localStorage.removeItem('token');
+          }
+        })
+        .catch(err => console.log(err))
+    }
+  }, []);
 
   return (
     <>
