@@ -69,11 +69,12 @@ module.exports.dislikeCard = (req, res, next) => {
 };
 
 module.exports.deleteCard = (req, res, next) => {
-  Cards.findByIdAndRemove(req.params.cardId)
+  Cards.findById(req.params.cardId)
     .orFail(() => {
       throw new ErrorNotFound('Карточка не найдена');
     })
     .then((card) => {
+      console.log(card);
       if (!card) {
         next(new ErrorNotFound('Карточка не найдена'));
       }

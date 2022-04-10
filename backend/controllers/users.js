@@ -70,12 +70,12 @@ module.exports.createUser = (req, res, next) => {
       }
       return bcrypt.hash(password, 10);
     })
-    .then(() => Users.create({
+    .then((hash) => Users.create({
       name,
       about,
       avatar,
       email,
-      password,
+      password: hash,
     }))
     .then((user) => Users.findOne({ _id: user._id })) // прячет пароль
     .then((user) => {
