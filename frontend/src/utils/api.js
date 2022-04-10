@@ -1,7 +1,7 @@
 class Api {
   constructor({ address, headers }) {
-        this.address = address;
-    this.headers = headers;
+    this.address = address,
+      this.headers = headers
     }
 
     _getResponseData(res) {
@@ -73,10 +73,16 @@ class Api {
         })
             .then(this._getResponseData)
     }
+
   getToken() {
     return localStorage.getItem('token');
   }
 }
+
+console.log('getToken', getToken);
+console.log('getToken()', getToken());
+console.log('this.getToken', this.getToken);
+console.log('this.getToken()', this.getToken());
 
 const api = new Api({
   //   address: 'https://mesto.nomoreparties.co/v1/cohort-32',
@@ -84,7 +90,7 @@ const api = new Api({
   address: 'https://api.arahalevich.nomoredomains.work',
   headers: {
     'Content-Type': 'application/json',
-    'Authorization': `Bearer ${this.getToken()}`
+    'Authorization': `Bearer ${localStorage.getItem('token')}`
   }
 });
 
