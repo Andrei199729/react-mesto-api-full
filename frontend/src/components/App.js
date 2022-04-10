@@ -168,8 +168,7 @@ function App() {
           if (res) {
             setLoggedIn(true);
             setEmail(res.email);
-          } else {
-            localStorage.removeItem('token');
+            history.push('/');
           }
         })
         .catch(err => console.log(err))
