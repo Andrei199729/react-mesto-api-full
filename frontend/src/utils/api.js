@@ -1,7 +1,7 @@
 class Api {
   constructor({ address, headers }) {
-    this.address = address,
-      this.headers = headers
+    this.address = address;
+    this.headers = headers;
     }
 
     _getResponseData(res) {
@@ -79,8 +79,6 @@ class Api {
   }
 }
 
-console.log('getToken', getToken);
-console.log('getToken()', getToken());
 console.log('this.getToken', this.getToken);
 console.log('this.getToken()', this.getToken());
 
