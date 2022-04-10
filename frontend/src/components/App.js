@@ -151,6 +151,12 @@ function App() {
           localStorage.setItem('token', data.token);
           setLoggedIn(true);
           setEmail(formData.email);
+          api.getInitialCards()
+            .then((cards) => setCards(cards))
+            .catch(err => console.log(err))
+          api.getAboutUser()
+            .then((user) => setCurrentUser(user))
+            .catch(err => console.log(err))
           handleInfoTooltip({ union: unionTrue, text: 'Вы успешно авторизованы!' });
         }
       })
@@ -158,12 +164,6 @@ function App() {
         console.log(err);
         handleInfoTooltip({ union: unionFalse, text: 'Что-то пошло не так! Попробуйте ещё раз.' })
       });
-    api.getInitialCards()
-      .then((cards) => setCards(cards))
-      .catch(err => console.log(err))
-    api.getAboutUser()
-      .then((user) => setCurrentUser(user))
-      .catch(err => console.log(err))
   }
 
   function handleInfoTooltip(data) {
