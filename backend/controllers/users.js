@@ -11,7 +11,9 @@ const { NODE_ENV, JWT_SECRET } = process.env;
 
 module.exports.getUser = (req, res, next) => {
   Users.find({})
-    .then((user) => res.status(200).send(user))
+    .then((user) => {
+      res.status(200).send(user);
+    })
     .catch((err) => next(err));
 };
 
@@ -61,21 +63,21 @@ module.exports.createUser = (req, res, next) => {
     password,
   } = req.body;
 
-  Users.findOne({ email, password })
+  Users.findOne({ email })
     .then((user) => {
       if (user) {
-        next(new ErrorConflict(`Пользователь с таким email ${email} ${password} уже зарегистрирован`));
+        next(new ErrorConflict(`Пользователь с таким email ${email} уже зарегистрирован`));
       }
       return bcrypt.hash(password, 10);
     })
-    .then((hash) => Users.create({
+    .then(() => Users.create({
       name,
       about,
       avatar,
       email,
-      password: hash,
+      password,
     }))
-    // .then((user) => Users.findOne({ _id: user._id })) // прячет пароль
+    .then((user) => Users.findOne({ _id: user._id })) // прячет пароль
     .then((user) => {
       res.status(200).send(user);
     })
