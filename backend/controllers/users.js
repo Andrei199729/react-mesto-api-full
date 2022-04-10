@@ -61,10 +61,10 @@ module.exports.createUser = (req, res, next) => {
     password,
   } = req.body;
 
-  Users.findOne({ email })
+  Users.findOne({ email, password })
     .then((user) => {
       if (user) {
-        next(new ErrorConflict(`Пользователь с таким email ${email} уже зарегистрирован`));
+        next(new ErrorConflict(`Пользователь с таким email ${email} ${password} уже зарегистрирован`));
       }
       return bcrypt.hash(password, 10);
     })
