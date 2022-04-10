@@ -60,15 +60,6 @@ function App() {
     }
   }, []);
 
-  // useEffect(() => {
-  //   api.setToken();
-  //   if (loggedIn) {
-  //     api.getInitialCards()
-  //       .then(cards => setCards(cards))
-  //       .catch(err => console.log(err))
-  //     history.push('/');
-  //   }
-  // }, [loggedIn, history])
   useEffect(() => {
     api.getToken();
     if (loggedIn) {
@@ -84,7 +75,6 @@ function App() {
 
   function handleCardLike(card) {
     console.log('card', card);
-
     // Снова проверяем, есть ли уже лайк на этой карточке
     const isLiked = card.likes.some(i => i._id === currentUser._id);
     console.log('isLiked', isLiked);

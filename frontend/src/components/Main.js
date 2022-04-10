@@ -4,7 +4,6 @@ import { CurrentUserContext } from "../context/CurrentUserContext";
 
 function Main(props) {
   const currentUser = useContext(CurrentUserContext);
-  console.log(currentUser);
     return (
         <>
             <main className="content">
