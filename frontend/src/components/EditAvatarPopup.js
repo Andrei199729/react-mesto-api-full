@@ -35,7 +35,8 @@ function EditAvatarPopup(props) {
         }
     }
 
-    function handleSubmit() {
+  function handleSubmit() {
+    console.log('propsEditAvatar', props);
       props.onUpdateAvatar({ avatar });
       props.onClose();
     }
