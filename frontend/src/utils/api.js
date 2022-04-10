@@ -74,14 +74,12 @@ class Api {
             .then(this._getResponseData)
     }
 
-  getToken() {
-    return localStorage.getItem('token');
-  }
+  // getToken() {
+  //   return localStorage.getItem('token');
+  // }
 }
 
 const api = new Api({
-  //   address: 'https://mesto.nomoreparties.co/v1/cohort-32',
-  // token: 'f0863dcb-641a-48c7-ae1b-e19e122bd627'
   address: 'https://api.arahalevich.nomoredomains.work',
   headers: {
     'Content-Type': 'application/json',

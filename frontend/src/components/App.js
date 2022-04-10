@@ -38,7 +38,7 @@ function App() {
   const [email, setEmail] = useState('');
 
   useEffect(() => {
-    api.getToken();
+    // api.getToken();
     const token = localStorage.getItem('token');
     Promise.all([api.getAboutUser(), api.getInitialCards()])
       .then(([user, card]) => {
@@ -61,7 +61,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    api.getToken();
+    // api.getToken();
     if (loggedIn) {
       api.getInitialCards()
         .then((cards) => setCards(cards))
