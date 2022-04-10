@@ -74,10 +74,8 @@ function App() {
   }, [loggedIn, history])
 
   function handleCardLike(card) {
-    console.log('card', card);
     // Снова проверяем, есть ли уже лайк на этой карточке
     const isLiked = card.likes.some(i => i === currentUser._id);
-    console.log('card.likes', card.likes);
     // Отправляем запрос в API и получаем обновлённые данные карточки
     api.changeLikeCardStatus(card._id, isLiked)
       .then((newCard) => {
@@ -114,24 +112,18 @@ function App() {
   }
 
   function handleUpdateUser(user) {
-    console.log('user', user);
-
     api.editProfile(user)
       .then(user => setCurrentUser(user))
       .catch(err => console.log(err))
   }
 
   function handleUpdateAvatar(avatar) {
-    console.log('avatar', avatar);
-
     api.updateAvatar(avatar)
       .then(item => setCurrentUser(item))
       .catch(err => console.log(err))
   }
 
   function handleAddPlaceSubmit(newCard) {
-    console.log('newCard', newCard);
-
     api.addCard(newCard)
       .then(card => setCards([card, ...cards]))
       .catch(err => console.log(err))
