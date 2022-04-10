@@ -85,7 +85,7 @@ const api = new Api({
   address: 'https://api.arahalevich.nomoredomains.work',
   headers: {
     'Content-Type': 'application/json',
-    'Authorization': `Bearer ${localStorage.getItem('token')}`
+    // 'Authorization': `Bearer ${localStorage.getItem('token')}`
   }
 });
 
