@@ -65,12 +65,12 @@ function App() {
     if (!loggedIn) {
       return;
     }
-    // api.getInitialCards()
-    //   .then((cards) => setCards(cards))
-    //   .catch(err => console.log(err))
-    // api.getAboutUser()
-    //   .then((user) => setCurrentUser(user))
-    //   .catch(err => console.log(err))
+    api.getInitialCards()
+      .then((cards) => setCards(cards))
+      .catch(err => console.log(err))
+    api.getAboutUser()
+      .then((user) => setCurrentUser(user))
+      .catch(err => console.log(err))
     history.push('/');
   }, [loggedIn, history])
 
@@ -131,6 +131,7 @@ function App() {
   }
 
   function handleRegistration(formData) {
+    console.log('handleRegistration', formData);
     auth.register(formData.email, formData.password)
       .then((res) => {
         if (res) {
@@ -145,6 +146,8 @@ function App() {
   }
 
   function handleAuthorization(formData) {
+    console.log('handleAuthorization', formData);
+
     auth.authorization(formData.email, formData.password)
       .then((data) => {
         if (data.token) {
