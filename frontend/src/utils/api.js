@@ -74,16 +74,16 @@ class Api {
             .then(this._getResponseData)
     }
 
-  // getToken() {
-  //   return localStorage.getItem('token');
-  // }
+  getToken() {
+    return localStorage.getItem('token');
+  }
 }
 
 const api = new Api({
   address: 'https://api.arahalevich.nomoredomains.work',
   headers: {
     'Content-Type': 'application/json',
-    // 'Authorization': `Bearer ${localStorage.getItem('token')}`
+    'Authorization': `Bearer ${localStorage.getItem('token')}`
   }
 });
 

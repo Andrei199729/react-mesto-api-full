@@ -38,30 +38,30 @@ function App() {
   const [email, setEmail] = useState('');
 
   useEffect(() => {
-    // api.getToken();
-    // const token = localStorage.getItem('token');
+    api.getToken();
+    const token = localStorage.getItem('token');
     Promise.all([api.getAboutUser(), api.getInitialCards()])
       .then(([user, card]) => {
         setCurrentUser(user);
         setCards(card);
       })
       .catch(err => console.log(err))
-    // if (token) {
-    //   auth.examinationValidationToken(token)
-    //     .then((res) => {
-    //       if (res) {
-    //         setLoggedIn(true);
-    //         setEmail(res.email);
-    //       } else {
-    //         localStorage.removeItem('token');
-    //       }
-    //     })
-    //     .catch(err => console.log(err))
-    // }
+    if (token) {
+      auth.examinationValidationToken(token)
+        .then((res) => {
+          if (res) {
+            setLoggedIn(true);
+            setEmail(res.email);
+          } else {
+            localStorage.removeItem('token');
+          }
+        })
+        .catch(err => console.log(err))
+    }
   }, []);
 
   useEffect(() => {
-    // api.getToken();
+    api.getToken();
     if (loggedIn) {
       api.getInitialCards()
         .then((cards) => setCards(cards))
