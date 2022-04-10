@@ -79,8 +79,6 @@ class Api {
   }
 }
 
-console.log('this.getToken()', this.getToken());
-
 const api = new Api({
   //   address: 'https://mesto.nomoreparties.co/v1/cohort-32',
   // token: 'f0863dcb-641a-48c7-ae1b-e19e122bd627'
