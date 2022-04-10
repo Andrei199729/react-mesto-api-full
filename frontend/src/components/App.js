@@ -145,19 +145,18 @@ function App() {
   }
 
   function handleAuthorization(formData) {
-    api.getToken();
+    console.dir('formDatadir', formData);
+    console.log('formDatalog', formData);
     auth.authorization(formData.email, formData.password)
       .then((data) => {
+        console.dir('datadir', data);
+        console.log('datalog', data);
         if (data.token) {
+          console.dir('datadir.token', data.token);
+          console.log('datalog.token', data.token);
           localStorage.setItem('token', data.token);
           setLoggedIn(true);
           setEmail(formData.email);
-          api.getInitialCards()
-            .then((cards) => setCards(cards))
-            .catch(err => console.log(err))
-          api.getAboutUser()
-            .then((user) => setCurrentUser(user))
-            .catch(err => console.log(err))
           handleInfoTooltip({ union: unionTrue, text: 'Вы успешно авторизованы!' });
         }
       })
