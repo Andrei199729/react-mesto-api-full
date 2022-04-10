@@ -75,7 +75,7 @@ class Api {
     }
 
   getToken() {
-    return localStorage.getItem('token');
+    return `Bearer ${localStorage.getItem('token')}`
   }
 }
 
