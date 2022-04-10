@@ -73,7 +73,10 @@ function App() {
     api.getToken();
     if (loggedIn) {
       api.getInitialCards()
-        .then(cards => setCards(cards))
+        .then((cards) => setCards(cards))
+        .catch(err => console.log(err))
+      api.getAboutUser()
+        .then((user) => console.log(user))
         .catch(err => console.log(err))
       history.push('/');
     }
