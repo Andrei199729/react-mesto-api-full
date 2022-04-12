@@ -9,14 +9,14 @@ class Api {
 
     getInitialCards() {
         return fetch(`${this.address}/cards`, {
-          headers: getToken(),
+          headers: this.getToken(),
         })
             .then(this._getResponseData);
     }
 
     getAboutUser() {
         return fetch(`${this.address}/users/me`, {
-          headers: getToken()
+          headers: this.getToken()
         })
             .then(this._getResponseData)
     }
@@ -24,7 +24,7 @@ class Api {
     editProfile(data) {
         return fetch(`${this.address}/users/me`, {
             method: 'PATCH',
-          headers: getToken(),
+          headers: this.getToken(),
             body: JSON.stringify({
                 name: data.name,
                 about: data.about
@@ -36,7 +36,7 @@ class Api {
     addCard(data) {
         return fetch(`${this.address}/cards`, {
             method: 'POST',
-          headers: getToken(),
+          headers: this.getToken(),
             body: JSON.stringify({
                 name: data.name,
                 link: data.link
@@ -48,7 +48,7 @@ class Api {
     deleteCard(dataId) {
         return fetch(`${this.address}/cards/${dataId}`, {
             method: 'DELETE',
-          headers: getToken()
+          headers: this.getToken()
         })
             .then(this._getResponseData)
     }
