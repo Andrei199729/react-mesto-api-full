@@ -99,12 +99,16 @@ module.exports.updateUserInfo = (req, res, next) => {
       throw new BadRequestError('Переданы некорректные данные');
     })
     .then((user) => {
+      console.log('user', user);
+
       if (!user) {
         next(new BadRequestError('Переданы некорректные данные'));
       }
       res.status(200).send(user);
     })
     .catch((err) => {
+      console.log('err', err);
+
       if (err.name === 'ValidationError') {
         next(new BadRequestError('Переданы некорректные данные'));
       }
@@ -119,12 +123,15 @@ module.exports.updateAvatar = (req, res, next) => {
       throw new BadRequestError('Переданы некорректные данные');
     })
     .then((user) => {
+      console.log('user', user);
+
       if (!user) {
         next(new BadRequestError('Переданы некорректные данные'));
       }
       res.status(200).send(user);
     })
     .catch((err) => {
+      console.log('err', err);
       if (err.name === 'ValidationError') {
         next(new BadRequestError('Переданы некорректные данные'));
       }
