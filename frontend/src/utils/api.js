@@ -10,7 +10,6 @@ class Api {
     getInitialCards() {
         return fetch(`${this.address}/cards`, {
           headers: {
-            'Content-Type': 'application/json',
             authorization: this.getToken(),
           },
         })
@@ -20,7 +19,6 @@ class Api {
     getAboutUser() {
         return fetch(`${this.address}/users/me`, {
           headers: {
-            'Content-Type': 'application/json',
             authorization: this.getToken(),
           },
         })
