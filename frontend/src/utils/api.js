@@ -4,13 +4,13 @@ class Api {
     }
 
     _getResponseData(res) {
-      return res.ok ? res.json() : console.log(res);
-      // return res.ok ? res.json() : Promise.reject(new Error(`Ошибка: ${res.status}`));
+      return res.ok ? res.json() : Promise.reject(new Error(`Ошибка: ${res.status}`));
     }
 
     getInitialCards() {
         return fetch(`${this.address}/cards`, {
           headers: {
+            'Content-Type': 'application/json',
             authorization: this.getToken(),
           },
         })
@@ -20,6 +20,7 @@ class Api {
     getAboutUser() {
         return fetch(`${this.address}/users/me`, {
           headers: {
+            'Content-Type': 'application/json',
             authorization: this.getToken(),
           },
         })
@@ -30,6 +31,7 @@ class Api {
         return fetch(`${this.address}/users/me`, {
             method: 'PATCH',
           headers: {
+            'Content-Type': 'application/json',
             authorization: this.getToken(),
           },
             body: JSON.stringify({
@@ -44,6 +46,7 @@ class Api {
         return fetch(`${this.address}/cards`, {
             method: 'POST',
           headers: {
+            'Content-Type': 'application/json',
             authorization: this.getToken(),
           },
             body: JSON.stringify({
@@ -57,7 +60,10 @@ class Api {
     deleteCard(dataId) {
         return fetch(`${this.address}/cards/${dataId}`, {
             method: 'DELETE',
-          headers: this.getToken()
+          headers: {
+            'Content-Type': 'application/json',
+            authorization: this.getToken(),
+          },
         })
             .then(this._getResponseData)
     }
@@ -67,6 +73,7 @@ class Api {
         return fetch(`${this.address}/cards/${dataId}/likes`, {
             method,
           headers: {
+            'Content-Type': 'application/json',
             authorization: this.getToken(),
           },
         })
@@ -77,6 +84,7 @@ class Api {
         return fetch(`${this.address}/users/me/avatar`, {
             method: 'PATCH',
           headers: {
+            'Content-Type': 'application/json',
             authorization: this.getToken(),
           },
             body: JSON.stringify({
