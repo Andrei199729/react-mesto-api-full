@@ -4,7 +4,7 @@ class Api {
     }
 
     _getResponseData(res) {
-        return res.ok ? res.json() : Promise.reject(new Error(`Ошибка: ${res.status}`));
+      return res.ok ? res.json() : Promise.reject(new Error(`Ошибка: ${res.status, res}`));
     }
 
     getInitialCards() {
