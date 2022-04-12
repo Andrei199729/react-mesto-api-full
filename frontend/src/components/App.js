@@ -136,8 +136,6 @@ function App() {
       .then((data) => {
         if (data.token) {
           localStorage.setItem('token', data.token);
-          api.getToken();
-          console.log(localStorage.getItem('token'));
           setLoggedIn(true);
           setEmail(formData.email);
           handleInfoTooltip({ union: unionTrue, text: 'Вы успешно авторизованы!' });

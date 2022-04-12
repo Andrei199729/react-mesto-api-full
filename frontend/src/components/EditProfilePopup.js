@@ -67,7 +67,7 @@ function EditProfilePopup(props) {
     function handleSubmit() {
         // Передаём значения управляемых компонентов во внешний обработчик
         props.onUpdateUser({
-            name,
+          name: name,
             about: description,
         });
         props.onClose();
