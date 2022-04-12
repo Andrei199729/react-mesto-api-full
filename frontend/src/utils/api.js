@@ -9,14 +9,18 @@ class Api {
 
     getInitialCards() {
         return fetch(`${this.address}/cards`, {
-          headers: this.getToken(),
+          headers: {
+            authorization: this.getToken(),
+          },
         })
             .then(this._getResponseData);
     }
 
     getAboutUser() {
         return fetch(`${this.address}/users/me`, {
-          headers: this.getToken()
+          headers: {
+            authorization: this.getToken(),
+          },
         })
             .then(this._getResponseData)
     }
@@ -24,7 +28,9 @@ class Api {
     editProfile(data) {
         return fetch(`${this.address}/users/me`, {
             method: 'PATCH',
-          headers: this.getToken(),
+          headers: {
+            authorization: this.getToken(),
+          },
             body: JSON.stringify({
                 name: data.name,
                 about: data.about
@@ -36,7 +42,9 @@ class Api {
     addCard(data) {
         return fetch(`${this.address}/cards`, {
             method: 'POST',
-          headers: this.getToken(),
+          headers: {
+            authorization: this.getToken(),
+          },
             body: JSON.stringify({
                 name: data.name,
                 link: data.link
@@ -57,7 +65,9 @@ class Api {
         const method = isLiked ? 'DELETE' : 'PUT';
         return fetch(`${this.address}/cards/${dataId}/likes`, {
             method,
-          headers: this.getToken()
+          headers: {
+            authorization: this.getToken(),
+          },
         })
             .then(this._getResponseData)
     }
@@ -65,7 +75,9 @@ class Api {
     updateAvatar(data) {
         return fetch(`${this.address}/users/me/avatar`, {
             method: 'PATCH',
-          headers: this.getToken(),
+          headers: {
+            authorization: this.getToken(),
+          },
             body: JSON.stringify({
                 avatar: data.avatar
             })
@@ -74,10 +86,7 @@ class Api {
     }
 
   getToken() {
-    this._headers = {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${localStorage.getItem('token')}`
-    }
+    return `Bearer ${localStorage.getItem('token')}`
   }
 }
 
