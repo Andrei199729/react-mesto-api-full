@@ -1,7 +1,6 @@
 class Api {
-  constructor({ address, headers }) {
-    this.address = address;
-    this.headers = headers;
+  constructor({ address }) {
+    this.address = address
     }
 
     _getResponseData(res) {
@@ -10,14 +9,14 @@ class Api {
 
     getInitialCards() {
         return fetch(`${this.address}/cards`, {
-          headers: this.headers,
+          headers: getToken(),
         })
             .then(this._getResponseData);
     }
 
     getAboutUser() {
         return fetch(`${this.address}/users/me`, {
-          headers: this.headers
+          headers: getToken()
         })
             .then(this._getResponseData)
     }
@@ -25,7 +24,7 @@ class Api {
     editProfile(data) {
         return fetch(`${this.address}/users/me`, {
             method: 'PATCH',
-          headers: this.headers,
+          headers: getToken(),
             body: JSON.stringify({
                 name: data.name,
                 about: data.about
@@ -37,7 +36,7 @@ class Api {
     addCard(data) {
         return fetch(`${this.address}/cards`, {
             method: 'POST',
-          headers: this.headers,
+          headers: getToken(),
             body: JSON.stringify({
                 name: data.name,
                 link: data.link
@@ -49,7 +48,7 @@ class Api {
     deleteCard(dataId) {
         return fetch(`${this.address}/cards/${dataId}`, {
             method: 'DELETE',
-          headers: this.headers
+          headers: getToken()
         })
             .then(this._getResponseData)
     }
@@ -58,7 +57,7 @@ class Api {
         const method = isLiked ? 'DELETE' : 'PUT';
         return fetch(`${this.address}/cards/${dataId}/likes`, {
             method,
-          headers: this.headers
+          headers: this.getToken()
         })
             .then(this._getResponseData)
     }
@@ -66,7 +65,7 @@ class Api {
     updateAvatar(data) {
         return fetch(`${this.address}/users/me/avatar`, {
             method: 'PATCH',
-          headers: this.headers,
+          headers: this.getToken(),
             body: JSON.stringify({
                 avatar: data.avatar
             })
@@ -75,16 +74,15 @@ class Api {
     }
 
   getToken() {
-    return `Bearer ${localStorage.getItem('token')}`
+    this._headers = {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    }
   }
 }
 
 const api = new Api({
   address: 'https://api.arahalevich.nomoredomains.work',
-  headers: {
-    'Content-Type': 'application/json',
-    'Authorization': `Bearer ${localStorage.getItem('token')}`
-  }
 });
 
 export default api;
