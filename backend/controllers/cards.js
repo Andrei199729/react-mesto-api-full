@@ -14,15 +14,12 @@ module.exports.createCard = (req, res, next) => {
   const ownerId = req.user._id;
   Cards.create({ name, link, owner: ownerId })
     .then((card) => {
-      console.log('card', card);
-
       if (!card) {
         next(new BadRequestError('Переданы некорректные данные'));
       }
       res.status(200).send(card);
     })
     .catch((err) => {
-      console.log('errcard', err);
       if (err.name === 'ValidationError') {
         next(new BadRequestError({ message: err.errorMessage }));
       }
